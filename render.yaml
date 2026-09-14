@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: celestia-farms-api
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: node src/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES
+        value: 1h
+      - key: GMAIL_USER
+        sync: false
+      - key: GMAIL_APP_PASSWORD
+        sync: false
+      - key: DEMO_EMAIL
+        value: lorrens51@gmail.com
+      - key: DEMO_PASSWORD
+        value: Farm2026
+      - key: DEMO_NAME
+        value: Lorren Smith
+      - key: OTP_TTL_MINUTES
+        value: 5
+      - key: OTP_MAX_ATTEMPTS
+        value: 5
+      - key: OTP_ECHO
+        value: true
